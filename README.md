@@ -1,30 +1,225 @@
-# React + TypeScript + Vite
+Task Requirements
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. **User Registration/Login: Users should be able to sign up for a new account or log in securely.**
+2. **Income and Expense Tracking:**
 
-Currently, two official plugins are available:
+Users can effortlessly add, edit, or remove income and expenses using a form, which includes a select field among other inputs to categorize each transaction by type (e.g., salary, groceries).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Simple Analytics:( in Dashboard home )**
 
-## Expanding the ESLint configuration
+3.1 Provide basic insights like total income, total expenses, and net income over time.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+3.2 Enable filtering for the insights by date, and by sectors  (e.g., salary, groceries).
 
-- Configure the top-level `parserOptions` property like this:
+3.3 Display visual summaries such as charts or graphs for better understanding.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+1. **User-Friendly Interface:**
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+4.1 Design an intuitive interface for smooth navigation and interaction.
+
+4.2 Ensure compatibility with different devices and screen sizes. ( optional )
+
+### Personal Requirement
+
+1. export Invoice as PDF
+
+# API Design
+
+### User APIs
+
+1. Create User: `/baseurl/api/v1/user/create-user` (POST)
+
+   ```tsx
+   {
+     email: string;
+     password: string;
+     displayName: string;
+     photoURL: string;
+   }
+   ```
+
+   ```tsx
+   {
+   success: true
+   data: user,
+   message: "User Created Successfully",
+   token: eieudjehfkjesyioue
+   }
+   ```
+
+   ```tsx
+   {
+   success: false
+   message: error.message,
+   }
+   ```
+
+2. User Login: `/baseurl/api/v1/user/login` (POST)
+
+   ```tsx
+   {
+     email: string;
+     password: string;
+   }
+   ```
+
+   ```tsx
+   {
+   success: true
+   data: user,
+   message: "User Loggedin",
+   token: eieudjehfkjesyioue
+   }
+   ```
+
+   ```tsx
+   {
+     success: false;
+     message: error.message;
+   }
+   ```
+
+3. Authenticate User: `/baseurl/api/v1/user/:id` (POST)
+
+   ```tsx
+   headers: {
+   authorization: Bearer token
+   }
+   ```
+
+   ```tsx
+   {
+   success: true
+   data: user,
+   token: eieudjehfkjesyioue
+   }
+   ```
+
+   ```tsx
+   {
+   success: false
+   message: error.message,
+   }
+   ```
+
+4. Update User: `/baseurl/api/v1/user/:id` (PATCH)
+
+   ```tsx
+   email?: string
+   password?: string
+   displayName?: string
+   photoURL?: string
+   ```
+
+   ```tsx
+   {
+   success: true
+   data: user,
+   message: "User Updated",
+   }
+   ```
+
+   ```tsx
+   {
+   success: false;
+   message: error.message
+   ```
+
+### Service APIs
+
+1. Create Service: `/baseurl/api/v1/service/create` (POST)
+
+   ```tsx
+   {
+     name: string;
+     category: string;
+     description: string;
+     type: income | expense;
+     amount: number;
+   }
+   ```
+
+   ```tsx
+   {
+     success: true;
+     data: data;
+     message: "Service Created Successfully";
+   }
+   ```
+
+   ```tsx
+   {
+     success: false;
+     message: error.message;
+   }
+   ```
+
+2. Get Income Services: `/baseurl/api/v1/service/services?type=income` (GET)
+
+   ```tsx
+   {
+     success: true;
+     data: data;
+     message: "service retrieved successfully";
+   }
+   ```
+
+   ```tsx
+   {
+     success: false;
+     message: error.message;
+   }
+   ```
+
+3. Get Expenses Services: `/baseurl/api/v1/service/servicies?type=expenses` (GET)
+
+   ```tsx
+   {
+     success: true;
+     data: data;
+     message: "service retrieved successfully";
+   }
+   ```
+
+   ```tsx
+   {
+     success: false;
+     message: error.message;
+   }
+   ```
+
+4. Update Services: `/baseurl/api/v1/service/:id` (PATCH)
+
+   ```tsx
+   {
+     success: true;
+     data: data;
+     message: "service updated successfully";
+   }
+   ```
+
+   ```tsx
+   {
+     success: false;
+     message: error.message;
+   }
+   ```
+
+5. Delete Services: `/baseurl/api/v1/service/:id` (DELETE)
+
+   ```tsx
+   {
+     success: true;
+     message: "service deleted successfully";
+   }
+   ```
+
+   ```tsx
+   {
+     success: false;
+     message: error.message;
+   }
+   ```
+
+6. Get Total Income: `/baseurl/api/v1/service/total-income?time=7` (GET)
+7. Get Total Expenses: `/baseurl/api/v1/service/total-expense?time=7` (GET)
