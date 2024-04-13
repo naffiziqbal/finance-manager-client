@@ -7,7 +7,7 @@ const App = () => {
       <div className="md:w-[5rem] md:relative absolute bottom-0 w-full bg-violet-600 md:h-screen h-fit min-w-screen z-50">
         <Sidebar />
       </div>
-      <div className="mx-auto container overflow-auto">
+      <div className="mx-auto lg:container overflow-x-hidden">
         <RootLayout />
       </div>
     </div>
