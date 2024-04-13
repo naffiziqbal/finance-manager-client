@@ -1,31 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
-import { getTotalIncome } from "../../utils/getTotalIncome";
-import { getTotalExpense } from "../../utils/getTotalExpense";
+import { useState } from "react";
 import Chart from "../../components/dashboard/chart/Chart";
+import { useGetALlIncome } from "../../hooks/useGetTotalIncome";
+import { useGetTotalExpenses } from "../../hooks/useGetTotalExpenses";
 
 const Dashboard = () => {
-  const [incomeAmount, setIncomeAmount] = useState<any>(0);
-  const [expense, setExpense] = useState<any>(0);
   const [date, setDate] = useState<number>(30);
 
-  // Get Total Income
-  useEffect(() => {
-    const getIncomeData = async () => {
-      const { services } = await getTotalIncome(date);
-      setIncomeAmount(services.find((service: any) => service).totalIncome);
-    };
-    getIncomeData();
-  }, [date, incomeAmount, expense]);
-
-  // Get Total Expenses
-  useEffect(() => {
-    const totalExpenses = async () => {
-      const { services } = await getTotalExpense(date);
-      setExpense(services?.find((service: any) => service).totalExpenses);
-    };
-    totalExpenses();
-  }, [date, expense, incomeAmount]);
+  // Get Total Income  //*Custom Hook
+  const incomeAmount = useGetALlIncome(date);
+  
+  // Get Total Expenses //*Custom Hook
+  const expense = useGetTotalExpenses(date);
 
   return (
     <div className="w-full">
