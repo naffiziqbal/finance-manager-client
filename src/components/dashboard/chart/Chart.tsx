@@ -8,10 +8,10 @@ export default function Chart() {
   const expenses: any = useGetExpenseData();
   const data = income?.services?.map((service: any) => service.amount);
   const expenseData = expenses?.services?.map((service: any) => service.amount);
-  
-  const expenseDate = expenses?.services?.map(
-    (service: any) => new Date(service?.createdAt).getMonth() + 1
-  );
+
+  //   const expenseDate = expenses?.services?.map(
+  //     (service: any) => new Date(service?.createdAt).getMonth() + 1
+  //   );
 
   const uData = data || [];
   const pData = expenseData || [];
@@ -32,13 +32,13 @@ export default function Chart() {
 
   return (
     <LineChart
-      width={800}
-      height={500}
+      width={1400}
+      height={600}
+      margin={{ top: 50, right: 10, bottom: 50, left: 100 }}
       series={[
-        { data: pData, label: "expenses" },
-        { data: uData, label: "income" },
+        { data: pData, label: "expenses", color: "#f00" },
+        { data: uData, label: "income", color: "#0f0" },
       ]}
-      xAxis={[{ scaleType: "point", data: xLabels }]}
     />
   );
 }

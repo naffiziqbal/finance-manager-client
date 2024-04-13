@@ -27,7 +27,7 @@ const Dashboard = () => {
     totalExpenses();
   }, [date]);
   return (
-    <>
+    <div className="w-full">
       <select
         className="outline-none duration-300 border border-gray-300 rounded-md p-2 w-1/4  focus:ring-opacity-50 mb-2 *:rounded-sm "
         name="Date"
@@ -57,9 +57,9 @@ const Dashboard = () => {
             </span>
           ))}
         </div>
-        <Chart />
       </div>
-    </>
+      <Chart />
+    </div>
   );
 };
 
