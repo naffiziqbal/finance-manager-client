@@ -4,6 +4,7 @@ import Chart from "../../components/dashboard/chart/Chart";
 import { useGetALlIncome } from "../../hooks/useGetTotalIncome";
 import { useGetTotalExpenses } from "../../hooks/useGetTotalExpenses";
 import BasicBars from "./chart/CategoryChart";
+import ExpensesChart from "./chart/expensesChart";
 
 const Dash = () => {
   const [date, setDate] = useState<number>(30);
@@ -69,6 +70,12 @@ const Dash = () => {
       <div>
         <h3 className="text-2xl font-bold mt-12">Monthly Income By Category</h3>
         <BasicBars />
+      </div>
+      <div>
+        <h3 className="text-2xl font-bold mt-12">
+          Monthly Expenses By Category
+        </h3>
+        <ExpensesChart />
       </div>
     </div>
   );
