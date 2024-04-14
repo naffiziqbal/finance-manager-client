@@ -31,7 +31,7 @@ const Dash = () => {
       </select>
 
       {/* Income and Expense */}
-      <div className="w-full grid lg:grid-cols-3 md:grid-cols-2  grid-cols-1 gap-5  items-center min-w-fit md:pr-12">
+      <div className="w-full grid lg:grid-cols-3 md:grid-cols-2  grid-cols-1 gap-5  items-center -500 md:pr-12">
         {/* Total Income ================= */}
         <div className="rounded-lg bg-[#0000001a] bg-opacity-10 backdrop-filter backdrop-blur-2xl px-4 py-5 shadow-md">
           <p className="text-xl font-semibold">Total Income</p>
@@ -61,21 +61,27 @@ const Dash = () => {
           </div>
         )}
       </div>
-      <div className="overflow-auto mt-12">
-        <h3 className="text-2xl font-bold">
-          Total Income and Expenses Analytics
-        </h3>
-        <Chart />
-      </div>
-      <div>
-        <h3 className="text-2xl font-bold mt-12">Monthly Income By Category</h3>
-        <BasicBars />
-      </div>
-      <div>
-        <h3 className="text-2xl font-bold mt-12">
-          Monthly Expenses By Category
-        </h3>
-        <ExpensesChart />
+
+      {/* Charts ===================== */}
+      <div className="grid lg:grid-cols-3 md:grid-cols-1 grid-cols-1 w-full  ">
+        <div className=" mt-12">
+          <h3 className="text-center md:text-start text-2xl font-bold mt-12">
+            Total Income and Expenses Analytics
+          </h3>
+          <Chart />
+        </div>
+        <div className=" mt-12  flex flex-col h-full z-50 w-full">
+          <h3 className="text-center md:text-start text-2xl font-bold my-12">
+            Monthly Expenses By Category
+          </h3>
+          <ExpensesChart />
+        </div>
+        <div className=" mt-12">
+          <h3 className="text-center md:text-start text-2xl font-bold mt-12">
+            Monthly Income By Category
+          </h3>
+          <BasicBars />
+        </div>
       </div>
     </div>
   );

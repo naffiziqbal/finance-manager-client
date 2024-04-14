@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { BarChart } from "@mui/x-charts/BarChart";
 import { useMonthlyIncomeByCat } from "../../../hooks/useGetMonthlyIncomeBycat";
+import { Grid } from "@mui/material";
 
 export default function BasicBars() {
   const data: any = useMonthlyIncomeByCat();
@@ -12,12 +13,16 @@ export default function BasicBars() {
   ) || [1, 2, 3];
 
   return (
-    <BarChart
-      xAxis={[{ scaleType: "band", data: pData }]}
-      series={[{ data: uData }]}
-      width={1200}
-      height={600}
-    />
+    <Grid container spacing={1}>
+      <Grid item xs={12}>
+        <BarChart
+          xAxis={[{ scaleType: "band", data: pData }]}
+          series={[{ data: uData }]}
+          height={400}
+          margin={{ left: 80 }}
+        />
+      </Grid>
+    </Grid>
   );
 }
 

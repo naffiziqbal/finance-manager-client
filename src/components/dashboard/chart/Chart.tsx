@@ -2,6 +2,7 @@
 import { LineChart } from "@mui/x-charts";
 import useGetIncomeData from "../../../hooks/useGetIncomeData";
 import useGetExpenseData from "../../../hooks/useGetExpenseData";
+import { Grid } from "@mui/material";
 
 export default function Chart() {
   const income: any = useGetIncomeData();
@@ -16,14 +17,17 @@ export default function Chart() {
   const uData = data || [];
   const pData = expenseData || [];
   return (
-    <LineChart
-      width={1400}
-      sx={{ overflow: "auto" }}
-      height={600}
-      series={[
-        { data: pData, label: "expenses", color: "#f00" },
-        { data: uData, label: "income", color: "#0f0" },
-      ]}
-    />
+    <Grid container spacing={1}>
+      <Grid item xs={12}>
+        <LineChart
+          height={400}
+          series={[
+            { data: pData, label: "expenses", color: "#f00" },
+            { data: uData, label: "income", color: "#0f0" },
+          ]}
+          margin={{ left: 80 }}
+        />
+      </Grid>
+    </Grid>
   );
 }
