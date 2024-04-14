@@ -6,11 +6,11 @@ const useGetExpenseData = () => {
     const [data, setData] = useState([]);
     useEffect(() => {
         const getExpenses = async () => {
-            const data = await getAllExpenses()
+            const data = await getAllExpenses("6611a7457be5f0742aa4a498")
             setData(data)
         }
         getExpenses();
-    }, [data])
+    }, [])
     return data;
 
 }

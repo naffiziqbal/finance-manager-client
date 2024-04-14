@@ -60,10 +60,14 @@ const Dash = () => {
           </div>
         )}
       </div>
-      <div className="overflow-auto">
+      <div className="overflow-auto mt-12">
+        <h3 className="text-2xl font-bold">
+          Total Income and Expenses Analytics
+        </h3>
         <Chart />
       </div>
       <div>
+        <h3 className="text-2xl font-bold mt-12">Monthly Income By Category</h3>
         <BasicBars />
       </div>
     </div>

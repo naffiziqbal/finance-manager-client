@@ -20,7 +20,6 @@ export default function Chart() {
       width={1400}
       sx={{ overflow: "auto" }}
       height={600}
-      margin={{ top: 50, right: 10, bottom: 50, left: 150 }}
       series={[
         { data: pData, label: "expenses", color: "#f00" },
         { data: uData, label: "income", color: "#0f0" },

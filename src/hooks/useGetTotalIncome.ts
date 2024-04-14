@@ -6,7 +6,7 @@ export const useGetALlIncome = (date: number) => {
     const [incomeAmount, setIncomeAmount] = useState<any>(0);
     useEffect(() => {
         const getIncomeData = async () => {
-            const { services } = await getTotalIncome(date);
+            const { services } = await getTotalIncome(date, "6611a7457be5f0742aa4a498");
             setIncomeAmount(services.find((service: any) => service).totalIncome);
         };
         getIncomeData();

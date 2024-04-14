@@ -132,6 +132,7 @@ Users can effortlessly add, edit, or remove income and expenses using a form, wh
    ```tsx
    {
      name: string;
+     creatorId: string;
      category: string;
      description: string;
      type: income | expense;
@@ -154,7 +155,7 @@ Users can effortlessly add, edit, or remove income and expenses using a form, wh
    }
    ```
 
-2. Get Income Services: `/baseurl/api/v1/service/services?type=income` (GET)
+2. Get Income Services: `/baseurl/api/v1/service/services/:id?type=income` (GET)
 
    ```tsx
    {
@@ -171,7 +172,7 @@ Users can effortlessly add, edit, or remove income and expenses using a form, wh
    }
    ```
 
-3. Get Expenses Services: `/baseurl/api/v1/service/servicies?type=expenses` (GET)
+3. Get Expenses Services: `/baseurl/api/v1/service/services/:id?type=expenses` (GET)
 
    ```tsx
    {
@@ -221,9 +222,9 @@ Users can effortlessly add, edit, or remove income and expenses using a form, wh
    }
    ```
 
-6. Get Total Income: `/baseurl/api/v1/service/total-income?time=7` (GET)
-7. Get Total Expenses: `/baseurl/api/v1/service/total-expense?time=7` (GET)
-8. Get Category Wise Data : `/baseurl/api/v1/service?type={}&category={}`
+6. Get Total Income: `/baseurl/api/v1/service/:id/total-income?time=7` (GET)
+7. Get Total Expenses: `/baseurl/api/v1/service/:id/total-expense?time=7` (GET)
+8. Get Category Wise Data : `/baseurl/api/v1/service/:id/?type={}&category={}`
 
 ```tsx
 {

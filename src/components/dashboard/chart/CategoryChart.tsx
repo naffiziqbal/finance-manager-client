@@ -1,13 +1,24 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { BarChart } from "@mui/x-charts/BarChart";
+import { useMonthlyIncomeByCat } from "../../../hooks/useGetMonthlyIncomeBycat";
 
 export default function BasicBars() {
+  const data: any = useMonthlyIncomeByCat();
+  const uData = data?.services?.map((service: any) => service?.totalAmount) || [
+    1, 2, 3,
+  ];
+  const pData = data?.services?.map((service: any) =>
+    service?._id?.toUpperCase()
+  ) || [1, 2, 3];
+
   return (
     <BarChart
-      xAxis={[{ scaleType: "band", data: ["group A", "group B", "group C"] }]}
-      series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}
-      width={1400}
-      margin={{ top: 50, right: 10, bottom: 50, left: 150 }}
-      height={500}
+      xAxis={[{ scaleType: "band", data: pData }]}
+      series={[{ data: uData }]}
+      width={1200}
+      height={600}
     />
   );
 }
+
+// data: services?.map((service: any) => service.totalAmount),
