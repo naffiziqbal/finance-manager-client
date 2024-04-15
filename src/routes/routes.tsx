@@ -4,6 +4,8 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import Wallet from "../pages/wallet/Wallet";
 import Add from "../pages/add/Add";
 import Profile from "../pages/profile/Profile";
+import Signup from "../pages/registration/Signup";
+import Login from "../pages/registration/Login";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
     ],
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 

@@ -1,4 +1,3 @@
-import { Toaster } from "react-hot-toast";
 import RootLayout from "./components/Layout/RootLayout/RootLayout";
 import Sidebar from "./components/shared/sidebar/Sidebar";
 
@@ -11,7 +10,6 @@ const App = () => {
       <div className="mx-auto lg:container overflow-x-hidden w-full">
         <RootLayout />
       </div>
-      <Toaster />
     </div>
   );
 };
