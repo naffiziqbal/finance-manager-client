@@ -1,15 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { getTotalIncome } from "../utils/getTotalIncome";
+import { ContextProvider } from "../context/UserContext";
 
 export const useGetALlIncome = (date: number) => {
     const [incomeAmount, setIncomeAmount] = useState<any>(0);
+    const { user } = useContext(ContextProvider);
     useEffect(() => {
         const getIncomeData = async () => {
-            const { services } = await getTotalIncome(date, "6611a7457be5f0742aa4a498");
-            setIncomeAmount(services.find((service: any) => service).totalIncome);
+            const { services } = await getTotalIncome(date, user?._id);
+            setIncomeAmount(services?.find((service: any) => service).totalIncome);
         };
         getIncomeData();
-    }, [date, incomeAmount]);
+    }, [date, user?._id]);
     return incomeAmount;
 }

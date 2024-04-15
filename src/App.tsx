@@ -3,12 +3,12 @@ import RootLayout from "./components/Layout/RootLayout/RootLayout";
 import Sidebar from "./components/shared/sidebar/Sidebar";
 import { authenticateUser } from "./utils/userAuthentication";
 import Cookies from "js-cookie";
-import  { ContextProvider } from "./context/UserContext";
+import { ContextProvider } from "./context/UserContext";
 
 const App = () => {
-  const { setUser } = useContext(ContextProvider);
-
+  const { setUser, setLoading } = useContext(ContextProvider);
   useEffect(() => {
+    setLoading(true);
     const token = Cookies.get("token");
     const uid = Cookies.get("uid");
 
@@ -17,6 +17,7 @@ const App = () => {
         setUser(data?.user);
       });
     }
+    setLoading(false);
   }, []);
 
   return (

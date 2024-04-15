@@ -4,6 +4,8 @@ import toast from "react-hot-toast";
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../utils/login";
+import { useContext } from "react";
+import { ContextProvider } from "../../context/UserContext";
 
 type Inputs = {
   email?: string;
@@ -12,6 +14,7 @@ type Inputs = {
 
 export default function LoginForm() {
   const navigates = useNavigate();
+  const { setLoading } = useContext(ContextProvider);
   const {
     register,
     handleSubmit,
@@ -20,6 +23,7 @@ export default function LoginForm() {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setLoading(true);
     const userData = {
       email: data.email,
       password: data.password,
@@ -27,7 +31,6 @@ export default function LoginForm() {
 
     try {
       const user = await login(userData);
-
       console.log(user);
 
       if (user.success) {
@@ -44,6 +47,7 @@ export default function LoginForm() {
       console.log(error);
       toast(error.message);
     }
+    setLoading(false);
   };
 
   return (

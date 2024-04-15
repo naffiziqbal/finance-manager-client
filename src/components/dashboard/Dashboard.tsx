@@ -35,13 +35,15 @@ const Dash = () => {
         {/* Total Income ================= */}
         <div className="rounded-lg bg-[#0000001a] bg-opacity-10 backdrop-filter backdrop-blur-2xl px-4 py-5 shadow-md">
           <p className="text-xl font-semibold">Total Income</p>
-          <span className="text-2xl  font-bold">&#x9F3;{incomeAmount}</span>
+          <span className="text-2xl  font-bold">
+            &#x9F3;{incomeAmount || 0}
+          </span>
         </div>
         {/* Total Expenses ================= */}
 
         <div className="rounded-lg bg-[#0000001a] bg-opacity-10 backdrop-filter backdrop-blur-2xl px-4 py-5 shadow-md">
           <p className="text-xl font-semibold">Total Expense</p>
-          <span className="font-bold text-2xl">&#x9F3;{expense}</span>
+          <span className="font-bold text-2xl">&#x9F3;{expense || 0}</span>
         </div>
 
         {/* Net Profit ================= */}

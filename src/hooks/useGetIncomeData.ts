@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getAllIncome } from "../utils/getAllIncome";
+import { ContextProvider } from "../context/UserContext";
 
 const useGetIncomeData = () => {
-    const id = "6611a7457be5f0742aa4a498"
+    const { user } = useContext(ContextProvider);
+    const id = user?._id;
     const [data, setData] = useState([]);
     useEffect(() => {
         const getIncome = async (id: string) => {
@@ -10,7 +12,7 @@ const useGetIncomeData = () => {
             setData(data)
         }
         getIncome(id);
-    }, [data])
+    }, [id])
     return data;
 
 }

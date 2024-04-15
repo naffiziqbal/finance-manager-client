@@ -2,6 +2,8 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { addRecord } from "../../utils/addData";
 import toast from "react-hot-toast";
+import { useContext } from "react";
+import { ContextProvider } from "../../context/UserContext";
 
 type Inputs = {
   name: string;
@@ -13,9 +15,11 @@ type Inputs = {
 };
 
 export default function AddDataForm() {
+  const { user } = useContext(ContextProvider);
+  const id = user._id;
   const { register, handleSubmit, reset } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const creatorId = "6611a7457be5f0742aa4a498";
+    const creatorId = id;
     try {
       const res = await addRecord({ ...data, creatorId });
       if (res.success) {
@@ -77,7 +81,7 @@ export default function AddDataForm() {
           >
             <option disabled> Select Type</option>
             <option value="income">Income</option>
-            <option value="Expense">Expense</option>
+            <option value="expenses">Expense</option>
           </select>
         </label>
       </div>
