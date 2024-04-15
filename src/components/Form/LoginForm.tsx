@@ -2,7 +2,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
-import { Link, useNavigate, useNavigation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../utils/login";
 
 type Inputs = {

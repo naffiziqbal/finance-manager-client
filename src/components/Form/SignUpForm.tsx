@@ -4,7 +4,7 @@ import { handleImageUpload } from "../../utils/uploadProfileToIMGBB";
 import { signup } from "../../utils/signup";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 type Inputs = {
   email?: string;
@@ -14,6 +14,7 @@ type Inputs = {
 };
 
 export default function SignUpForm() {
+  const navigates = useNavigate();
   const {
     register,
     handleSubmit,
@@ -42,6 +43,7 @@ export default function SignUpForm() {
           Cookies.set("uid", user?.user._id);
           toast(user.message);
           reset();
+          navigates("/dashboard");
         }
         if (user.success === false) {
           toast(user.message);
