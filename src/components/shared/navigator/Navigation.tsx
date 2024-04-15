@@ -8,9 +8,11 @@ const Navigation = () => {
   return (
     <div className="mb-12">
       <h1 className="text-2xl font-semibold capitalize">
-        {data?.pathname.slice(1, 12)}
+        {data?.pathname.slice(1, 100).split("-").join(" ")}
       </h1>
-      <p className="capitalize">Welcome to {data?.pathname.slice(1, 12)}</p>
+      <p className="capitalize">
+        Welcome to {data?.pathname.slice(1, 100).split("-").join(" ")} Page
+      </p>
       <div role="presentation">
         <Breadcrumbs
           aria-label="breadcrumb"
@@ -26,7 +28,7 @@ const Navigation = () => {
             className="capitalize"
           >
             <Typography color="text.primary" className="capitalize">
-              {data.pathname.slice(1, 12)}
+              {data?.pathname.slice(1, 100).split("-").join(" ")}
             </Typography>
           </Link>
         </Breadcrumbs>

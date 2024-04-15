@@ -23,7 +23,7 @@ const router = createBrowserRouter([
         element: <Wallet />,
       },
       {
-        path: "/add",
+        path: "/add-new-transaction",
         element: <Add />,
       },
       {
