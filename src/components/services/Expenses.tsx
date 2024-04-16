@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import useGetIncomeData from "../../hooks/useGetIncomeData";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,18 +6,19 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import useGetExpenseData from "../../hooks/useGetExpenseData";
 import { useContext } from "react";
 import { ContextProvider } from "../../context/UserContext";
 import toast from "react-hot-toast";
 
-const Incomes = () => {
-  const { services } = useGetIncomeData();
+const Expenses = () => {
+  const { services } = useGetExpenseData();
   const { handleDeleteService } = useContext(ContextProvider);
 
   return (
-    <div className="overflow-hidden h-96  py-4 px-1">
-      <h3 className="text-2xl font-bold">All Income Data</h3>
-      <TableContainer component={Paper} className="h-96">
+    <div className="overflow-hidden h-96">
+      <h3 className="text-2xl font-bold">All Expense Data</h3>
+      <TableContainer component={Paper} className=" h-96">
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -49,7 +49,7 @@ const Incomes = () => {
                       handleDeleteService(row?._id).then((data: any) =>
                         data.success
                           ? toast.success(data.message)
-                          : toast.error(data.message)
+                          : toast(data.message)
                       )
                     }
                   >
@@ -65,4 +65,4 @@ const Incomes = () => {
   );
 };
 
-export default Incomes;
+export default Expenses;

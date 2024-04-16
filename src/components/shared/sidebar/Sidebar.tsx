@@ -12,7 +12,7 @@ const Sidebar = () => {
       <Link to={"/dashboard"}>
         <img src="/icons8-home-50.png" alt="" className="" />
       </Link>
-      <Link to={"/wallet"}>
+      <Link to={"/services"}>
         <img src="/icons8-wallet-50.png" alt="" />
       </Link>
       <Link to={"/add-new-transaction"}>

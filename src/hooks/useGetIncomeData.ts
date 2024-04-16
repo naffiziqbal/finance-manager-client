@@ -13,7 +13,7 @@ const useGetIncomeData = () => {
             setData(data)
         }
         getIncome(id);
-    }, [id])
+    }, [id, data])
     return data;
 
 }
