@@ -102,7 +102,7 @@ Users can effortlessly add, edit, or remove income and expenses using a form, wh
    }
    ```
 
-4. Update User: `/baseurl/api/v1/user/:id` (PATCH)
+4. Update User: `/baseurl/api/v1/user/update/:id` (PATCH)
 
    ```tsx
    email?: string

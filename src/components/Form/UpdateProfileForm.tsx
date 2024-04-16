@@ -1,70 +1,50 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useForm, SubmitHandler } from "react-hook-form";
-import { handleImageUpload } from "../../utils/uploadProfileToIMGBB";
-import { signup } from "../../utils/signup";
+import React, { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { ContextProvider } from "../../context/UserContext";
+import { updateUser } from "../../utils/updateUser";
 import toast from "react-hot-toast";
-import Cookies from "js-cookie";
-import { Link, useNavigate } from "react-router-dom";
 
-type Inputs = {
-  email?: string;
-  password?: string;
-  displayName?: string;
-  profile?: any;
-};
+const UpdateProfileForm = ({ setActiveForm }: any) => {
+  const { user } = useContext(ContextProvider);
 
-export default function SignUpForm() {
-  const navigates = useNavigate();
   const {
     register,
-    handleSubmit,
     reset,
+    handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm();
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const image = data.profile[0];
-    const formData = new FormData();
-    formData.append("image", image);
-    const res = await handleImageUpload(formData);
-    console.log(res);
-    if (res.success) {
-      const userData = {
-        displayName: data.displayName,
-        email: data.email,
-        password: data.password,
-        photoURL: res.data.url,
-      };
-      try {
-        const user = await signup(userData);
-        console.log(user);
-        if (user.success) {
-          Cookies.set("token", user?.token);
-          Cookies.set("uid", user?.user._id);
-          toast(user.message);
-          reset();
-          navigates("/dashboard");
-        }
-        if (user.success === false) {
-          toast(user.message);
-        }
-      } catch (error: any) {
-        console.log(error);
-        toast(error.message);
-      }
+  const onSubmit = async (data: any) => {
+    const name = data.displayName;
+    const email = data.email;
+    const password = data.password;
+
+    const newUser = {
+      name,
+      email,
+      password,
+    };
+    const response = await updateUser(newUser, user?._id);
+    console.log(response);
+    if (response.success) {
+      toast(response.message);
+      setActiveForm(false);
+      reset();
     }
   };
-
   return (
-    <div className="px-5">
+    <div className="my-6 px-4">
       <form onSubmit={handleSubmit(onSubmit)} className="">
         <div className="">
           <label htmlFor="name" className="flex flex-col">
             <span>Full Name</span>
             <input
               type="text"
+              defaultValue={user?.displayName}
               className="max-w-2xl w-full p-2 my-4 ring-violet-600 rounded ring outline-none"
-              {...register("displayName", { required: true })}
+              {...register("displayName")}
             />
             {errors.displayName && (
               <span className="text-xs text-red-500">
@@ -78,8 +58,9 @@ export default function SignUpForm() {
             <span>Email</span>
             <input
               type="email"
+              defaultValue={user?.email}
               className="max-w-2xl  w-full p-2 my-4 ring-violet-600 rounded ring outline-none"
-              {...register("email", { required: true })}
+              {...register("email")}
             />
             {errors.email && (
               <span className="text-xs text-red-500">
@@ -93,8 +74,9 @@ export default function SignUpForm() {
             <span>Password</span>
             <input
               type="password"
+              defaultValue={user?.password}
               className="max-w-2xl w-full p-2 my-4 ring-violet-600 rounded ring outline-none"
-              {...register("password", { required: true })}
+              {...register("password")}
             />
             {errors.password && (
               <span className="text-xs text-red-500">
@@ -104,12 +86,12 @@ export default function SignUpForm() {
           </label>
         </div>
         <div>
-          <label htmlFor="Profile" className="flex flex-col">
-            <span>Profile</span>
+          <label htmlFor="Image" className="flex flex-col">
+            <span>Image</span>
             <input
               type="file"
               className="max-w-2xl w-full p-2 my-4 ring-violet-600 rounded ring outline-none"
-              {...register("profile", { required: true })}
+              {...register("profile")}
             />
             {errors.profile && (
               <span className="text-xs text-red-500">
@@ -131,4 +113,6 @@ export default function SignUpForm() {
       </form>
     </div>
   );
-}
+};
+
+export default UpdateProfileForm;

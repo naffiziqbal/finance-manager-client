@@ -1,6 +1,10 @@
-
-const Profile = () => {
-  return <div>User Profile Page</div>;
+import Profile from "../../components/profile/Profile";
+const ProfilePage = () => {
+  return (
+    <div className="container mx-auto">
+      <Profile />
+    </div>
+  );
 };
 
-export default Profile;
+export default ProfilePage;

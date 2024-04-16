@@ -20,7 +20,7 @@ const Sidebar = () => {
       </Link>
       <Link to={"/profile"}>
         <img
-          src={user.photoURL || "/icons8-test-account-96.png"}
+          src={user?.photoURL || "/icons8-test-account-96.png"}
           alt=""
           className="rounded-full"
         />

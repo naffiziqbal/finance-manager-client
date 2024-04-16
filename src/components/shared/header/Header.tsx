@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ContextProvider } from "../../../context/UserContext";
 
 const Header = () => {
   const [light, setLight] = useState(false);
+  const { user, logout } = useContext(ContextProvider);
 
   return (
     <div className="flex w-full items-center h-fit mb-12">
@@ -25,7 +27,12 @@ const Header = () => {
               <img src="/icons8-moon-50.png" alt="" className="w-8 h-8" />
             )}
           </div>
-          <img src="/icons8-bell-50.png" alt="" className="w-8 h-8" />
+
+          {user?._id && (
+            <button onClick={() => logout()}>
+              <img src="/icons8-exit-50.png" alt="" className="w-8 h-8" />
+            </button>
+          )}
           <img src="/icons8-test-account-96.png" alt="" className="w-8 h-8" />
         </div>
       </section>
