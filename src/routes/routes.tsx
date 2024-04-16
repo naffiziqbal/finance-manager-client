@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Dashboard from "../pages/dashboard/Dashboard";
-import Wallet from "../pages/wallet/Wallet";
+import Services from "../pages/services/services";
 import Add from "../pages/add/Add";
 import Profile from "../pages/profile/Profile";
 import Signup from "../pages/registration/Signup";
@@ -21,8 +21,8 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "/wallet",
-        element: <Wallet />,
+        path: "/services",
+        element: <Services />,
       },
       {
         path: "/add-new-transaction",
