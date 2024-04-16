@@ -13,10 +13,13 @@ const RootLayout = () => {
   if (!user?._id) {
     return (
       <div className="h-screen w-screen text-2xl flex justify-center items-center">
-        <Link to={"/login"} className="font-bold text-violet-600 underline mx-2">
+        <Link
+          to={"/login"}
+          className="font-bold text-violet-600 underline mx-2"
+        >
           Login
-        </Link> 
-         to View
+        </Link>
+        to View
       </div>
     );
   }

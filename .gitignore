@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 node modules
 .env
+
+# Local Netlify folder
+.netlify

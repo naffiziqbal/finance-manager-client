@@ -7,6 +7,8 @@ import { ContextProvider } from "./context/UserContext";
 
 const App = () => {
   const { setUser, setLoading } = useContext(ContextProvider);
+  const uid = Cookies.get("uid");
+  const token = Cookies.get("token");
   useEffect(() => {
     setLoading(true);
     const token = Cookies.get("token");
@@ -18,7 +20,7 @@ const App = () => {
       });
     }
     setLoading(false);
-  }, []);
+  }, [token, uid]);
 
   return (
     <div className="flex  w-full justify-between relative h-screen overflow-hidden">

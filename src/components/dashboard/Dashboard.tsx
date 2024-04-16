@@ -72,7 +72,7 @@ const Dash = () => {
           </h3>
           <Chart />
         </div>
-        <div className=" mt-12  flex flex-col h-full z-50 w-full">
+        <div className=" mt-12  flex flex-col h-ful  w-full">
           <h3 className="text-center md:text-start text-2xl font-bold my-12">
             Monthly Expenses By Category
           </h3>
