@@ -1,8 +1,7 @@
-import { Link, Outlet } from "react-router-dom";
-import Header from "../../shared/header/Header";
-import Navigation from "../../shared/navigator/Navigation";
 import { useContext } from "react";
+import { Link, Outlet } from "react-router-dom";
 import { ContextProvider } from "../../../context/UserContext";
+import Navigation from "../../shared/navigator/Navigation";
 
 const RootLayout = () => {
   const { user, loading } = useContext(ContextProvider);
@@ -25,7 +24,7 @@ const RootLayout = () => {
   }
   return (
     <div className="w-full  py-3 md:mx-12 text-[#1f2c73]">
-      <Header />
+      {/* <Header /> */}
       <Navigation />
       <Outlet />
     </div>

@@ -9,6 +9,7 @@ const App = () => {
   const { setUser, setLoading } = useContext(ContextProvider);
   const uid = Cookies.get("uid");
   const token = Cookies.get("token");
+  
   useEffect(() => {
     setLoading(true);
     const token = Cookies.get("token");
