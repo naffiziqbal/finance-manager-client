@@ -8,6 +8,5 @@ const res = await fetch(`${import.meta.env.VITE_APP_SERVER}service/create-servic
         body: JSON.stringify(data),
     });
     const response = await res.json();
-    console.log(response)
     return response;
 }
